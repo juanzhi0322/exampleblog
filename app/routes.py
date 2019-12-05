@@ -4,9 +4,11 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, \
-    ResetPasswordRequestForm, ResetPasswordForm
+    ResetPasswordRequestForm, ResetPasswordForm, MyLocationForm
 from app.models import User, Post
 from app.email import send_password_reset_email
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
 
 
 @app.before_request
@@ -30,10 +32,9 @@ def index():
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
         page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('index', page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('index', page=posts.prev_num) \
-        if posts.has_prev else None
+    next_url = url_for('index', page=posts.next_num) if posts.has_next else None
+        
+    prev_url = url_for('index', page=posts.prev_num) if posts.has_prev else None
     return render_template('index.html', title='Home', form=form,
                            posts=posts.items, next_url=next_url,
                            prev_url=prev_url)
@@ -185,3 +186,12 @@ def unfollow(username):
     db.session.commit()
     flash('You are not following {}.'.format(username))
     return redirect(url_for('user', username=username))
+
+@app.route('/my_location', methods=['GET', 'POST'])
+@login_required
+def my_location():
+    address= "https://www.google.com/maps/embed/v1/search?key=AIzaSyBMpAW0AhUm8dxlEphKxU3Sxu68QaI52Nc&q=Mathematical+Sciences+Building, 800 E Summit St, Kent, OH 44240"
+    form = MyLocationForm()
+    if form.validate_on_submit():
+        address = "https://www.google.com/maps/embed/v1/search?key=AIzaSyBMpAW0AhUm8dxlEphKxU3Sxu68QaI52Nc&q="+ form.address.data.replace(" ","+")
+    return render_template('my_location.html',address=address, form=form)

@@ -63,3 +63,7 @@ class EditProfileForm(FlaskForm):
 class PostForm(FlaskForm):
     post = TextAreaField('Say something', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class MyLocationForm(FlaskForm):
+    address = TextAreaField('Address', validators=[Length(min=0, max=70)])
+    submit = SubmitField('Submit')

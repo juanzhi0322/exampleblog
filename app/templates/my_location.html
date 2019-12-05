@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    <br>
+    <br>
+    <iframe
+  width="450"
+  height="250"
+  frameborder="0" style="border:0"
+  src={{address}} allowfullscreen>
+</iframe>
+{% endblock %}

@@ -1,0 +1,94 @@
+2019-10-23 13:12:17,122 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:42]
+2019-10-23 13:12:32,176 ERROR: Exception on /edit_profile [POST] [in C:\Users\johnn\Anaconda3\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: user.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\johnn\juanzhiblog\app\routes.py", line 92, in edit_profile
+    db.session.commit()
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1026, in commit
+    self.transaction.commit()
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 493, in commit
+    self._prepare_impl()
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 472, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 2451, in flush
+    self._flush(objects)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 2589, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\util\compat.py", line 129, in reraise
+    raise value
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 2549, in _flush
+    flush_context.execute()
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 236, in save_obj
+    update,
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 978, in _emit_update_statements
+    statement, multiparams
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\util\compat.py", line 383, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\util\compat.py", line 128, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\johnn\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
+[SQL: UPDATE user SET username=?, about_me=? WHERE user.id = ?]
+[parameters: ('Juanzhi', 'test', 2)]
+(Background on this error at: http://sqlalche.me/e/gkpj)
+2019-10-23 13:20:30,783 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:42]
+2019-10-26 13:10:00,668 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:43]
+2019-10-28 13:46:55,229 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:43]
+2019-11-14 16:04:50,860 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:42]
+2019-11-14 16:47:42,471 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:47]
+2019-11-14 16:51:47,153 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:47]
+2019-11-14 17:06:57,440 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:47]
+2019-11-14 17:10:21,241 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:47]
+2019-11-14 17:13:12,665 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:47]
+2019-11-18 20:58:39,950 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:49]
+2019-11-20 17:30:24,792 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:49]
+2019-11-20 20:44:39,638 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:47]
+2019-11-20 21:04:57,272 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:49]
+2019-11-21 13:43:52,060 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:49]
+2019-11-24 16:14:27,576 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:49]
+2019-11-25 12:27:53,859 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:49]
+2019-12-03 23:06:32,065 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:49]
+2019-12-04 12:57:42,101 INFO: Microblog startup [in C:\Users\johnn\juanzhiblog\app\__init__.py:55]
