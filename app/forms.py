@@ -66,4 +66,4 @@ class PostForm(FlaskForm):
 
 class MyLocationForm(FlaskForm):
     address = TextAreaField('Address', validators=[Length(min=0, max=70)])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Search')
